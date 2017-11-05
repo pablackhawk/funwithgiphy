@@ -50,8 +50,12 @@ button, #add-topic {
 
 #add-topic {
 	position:relative;
-	left: 55%;
+	left: 45%;
 	margin-top: 1%;
+}
+
+.gif {
+	float: left;
 }
 
 .header {
