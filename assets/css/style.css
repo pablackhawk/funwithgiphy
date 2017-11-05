@@ -17,7 +17,7 @@
 
 [class*="col-"] {
     float: left;
-    padding: 15px;
+    padding: 20px;
 }
 
 .row::after {
@@ -49,9 +49,12 @@ button, #add-topic {
 }
 
 #add-topic {
-	position:relative;
-	left: 45%;
-	margin-top: 1%;
+	margin:2% 20.5%;
+	
+}
+
+#topic-input {
+	border: 1px solid #666;
 }
 
 .gif {
@@ -61,7 +64,7 @@ button, #add-topic {
 .header {
     background-color: #666;
     color: #fff;
-    padding: 20px;
+    padding: 30px;
     height:25%;
 }
 .menu ul {

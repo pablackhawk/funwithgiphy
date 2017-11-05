@@ -1,23 +1,8 @@
 $(document).ready(function() {
-	var topics = ["Aircraft", "Cars", "D&D", "Star Trek",
+
+	var topics = ["Aircraft", "Cars", "Dungeons & Dragons", "Star Trek",
 				  "Star Wars", "Disney", "Video Games", 
-				  "Anaheim Ducks"];
-		
-
-		$(".image").on("click", function() {
-        		var state = $(this).attr("data-state");
-        		console.log(state);
-        		if (state === "still") {
-		          $(this).attr("src", $(this).attr("data-animate"));
-		          $(this).attr("data-state", 'animate');
-
-		        }
-		        else if ( state === 'animate') {
-		          $(this).attr('src', $(this).attr("data-still"));
-		          $(this).attr("data-state", 'still');
-
-        		}
-        	});
+				  "Anaheim Ducks"];	
 
 	function displayTopics() {
 		$("#gifStorage").empty();
@@ -31,22 +16,45 @@ $(document).ready(function() {
         }).done(function(response) {
         	console.log(response);
         	var results = response.data;
+        	if (results == ""){
+        		alert("There are no gifs for that topic")
+        	}
+
         	for(var i = 0; i < results.length; i++) {
-        	var gifDiv = $("<div class ='gif'>");
-        	var p = $("<p>").text("Rating: " + results [i].rating);
-        	var gifImage = $("<img>");
-        	gifImage.attr("src", results[i].images.fixed_height_still.url);
-        	gifImage.attr("data-state", 'still');
-        	gifImage.attr("data-still", results[i].images.fixed_height_still.url);
-        	gifImage.attr("data-animate", results[i].images.looping.mp4);
-        	gifImage.attr("class", 'image');
-        	gifDiv.append(p);
-        	gifDiv.append(gifImage);
+	        	var gifDiv = $("<div class ='gif'>");
+	        	var thisRating = results[i].rating;
+	        	var p = $("<p>").text("Rating: " + thisRating);
+	        	if (thisRating === ""){
+	        		thisRating = 'Unrated';
+	        	}
 
-        	$("#gifStorage").append(gifDiv);
+	        	var gifImage = $("<img>");
+	        	gifImage.attr("src", results[i].images.fixed_height_still.url); //still gif
+	        	gifImage.attr("data-still", results[i].images.fixed_height_still.url); //still gif
+	        	gifImage.attr("data-animate", results[i].images.fixed_height.url); //animated gif, supposedly
+	        	gifImage.attr("data-state", 'still'); //supposed to imput check for moving or still
+	        	gifImage.attr("class", 'image'); //selector for the gif
+	        	gifDiv.append(p);
+	        	gifDiv.append(gifImage);
 
+	        	$("#gifStorage").append(gifDiv); //places gifs on the page
 
-        }
+	        	$(".image").on("click", function() {
+        		var state = $(this).attr("data-state");
+        		console.log(this);
+	        		if (state === "still") {
+			          $(this).attr("src", $(this).data('animate'));
+			          $(this).attr("data-state", 'animate');
+
+			        }
+			        else {
+			          $(this).attr("src", $(this).data('still'));
+			          $(this).attr("data-state", 'still');
+
+	        		}
+	        	});
+
+	        }
         });
 	}
 	//creates buttons
@@ -69,9 +77,23 @@ $(document).ready(function() {
 		renderButtons();
 	});
 
-	$(document).on("click", ".topic", displayTopics);
-
 	renderButtons();
+	$(document).on("click", ".topic", displayTopics);
+	//this is supposed to switch between still and animated on click, but it's not bloody working
+	
+		$(".image").on("click", function() {
+        		var state = $(this).attr("data-state");
+        		console.log(this);
+	        		if (state === "still") {
+			          $(this).attr("src", $(this).data('animate'));
+			          $(this).attr("data-state", 'animate');
 
+			        }
+			        else {
+			          $(this).attr("src", $(this).data('still'));
+			          $(this).attr("data-state", 'still');
+
+	        		}
+	        	});
 	
 });
