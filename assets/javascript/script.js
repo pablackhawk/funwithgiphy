@@ -3,19 +3,19 @@ $(document).ready(function() {
 				  "Star Wars", "Disney", "Video Games", 
 				  "Anaheim Ducks"];
 
-	function displayTopics() {
-		var images = $(this).attr("data-name");
-		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        images + "&api_key=dc6zaTOxFJmzC&limit=10";
+	// function displayTopics() {
+	// 	var images = $(this).attr("data-name");
+	// 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+ //        images + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-        $.ajax({
-        	url: queryURL,
-        	method: "GET"
-        }).done(function(response) {
-        	var gifDiv = $("<div class ='gif'>");
-        	var rating = "";
-        });
-	}
+ //        $.ajax({
+ //        	url: queryURL,
+ //        	method: "GET"
+ //        }).done(function(response) {
+ //        	var gifDiv = $("<div class ='gif'>");
+ //        	var rating = "";
+ //        });
+	// }
 	//creates buttons
 	function renderButtons() {
 		$("#buttonStorage").empty();
@@ -28,14 +28,15 @@ $(document).ready(function() {
 		}
 	}
 	//handles adding topic
-	$("#addTopic").on("click", function(event) {
+	$("#add-topic").on("click", function(event) {
 		event.preventDefault();
-		var newTopic = $("#topicInput").val().trim();
+		var newTopic = $("#topic-input").val().trim;
+		console.log(newTopic);
 		topics.push(newTopic);
 		renderButtons();
 	});
 
-	$(document).on("click", ".topic", displayTopics);
+	// $(document).on("click", ".topic", displayTopics);
 
 	renderButtons();
 });
