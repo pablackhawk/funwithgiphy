@@ -39,21 +39,6 @@ $(document).ready(function() {
 
 	        	$("#gifStorage").append(gifDiv); //places gifs on the page
 
-	        	$(".image").on("click", function() {
-        		var state = $(this).attr("data-state");
-        		console.log(this);
-	        		if (state === "still") {
-			          $(this).attr("src", $(this).data('animate'));
-			          $(this).attr("data-state", 'animate');
-
-			        }
-			        else {
-			          $(this).attr("src", $(this).data('still'));
-			          $(this).attr("data-state", 'still');
-
-	        		}
-	        	});
-
 	        }
         });
 	}
@@ -79,9 +64,9 @@ $(document).ready(function() {
 
 	renderButtons();
 	$(document).on("click", ".topic", displayTopics);
-	//this is supposed to switch between still and animated on click, but it's not bloody working
 	
-		$(".image").on("click", function() {
+	
+		$("body").on("click", ".image", function() {
         		var state = $(this).attr("data-state");
         		console.log(this);
 	        		if (state === "still") {
