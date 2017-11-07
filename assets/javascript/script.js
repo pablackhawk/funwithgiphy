@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-	var topics = ["Aircraft", "Cars", "Dungeons & Dragons", "Star Trek",
+	var topics = ["Aircraft", "Cars", "F-14 Tomcat", "Dungeons & Dragons", "Star Trek",
 				  "Star Wars", "Disney", "Video Games", 
-				  "Anaheim Ducks"];	
+				  "Anaheim Ducks", "Hockey", "Critical Role", "Laura Bailey", "A-10 Warthog"];	
 
 	function displayTopics() {
 		$("#gifStorage").empty();
@@ -56,10 +56,13 @@ $(document).ready(function() {
 	//handles adding topic
 	$("#add-topic").on("click", function(event) {
 		event.preventDefault();
+		if($("#topic-input").val().trim() !== ""){
 		var newTopic = $("#topic-input").val().trim();
 		console.log(newTopic);
 		topics.push(newTopic);
 		renderButtons();
+		$("topic-input").val("");
+		}
 	});
 
 	renderButtons();

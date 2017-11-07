@@ -1,38 +1,51 @@
+body {
+	background-image: url("../images/micro_carbon.png");
+	color: #ddd;
+}
 .header {
 	text-align: center;
+	border-bottom:2px solid hsl(58, 80%, 42%);
 }
+
 button, #add-topic {
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 	background-color: #377;
 	padding: 3px, 10px;
 	margin:0 1px;
 	color: #ccc;
-	font-size: 18px;
+	font-size: 16px;
 
 }
 
 #add-topic {
-	margin:2% 20.5%;
+	margin:2% 53%;
 	
 }
 
 #topic-input {
-	border: 1px solid #666;
+	border: 2px solid hsl(58, 80%, 42%);
 }
 
 .gif {
 	float: left;
 }
 
-@media only screen and (min-width: 1440px) {
+#form {
+	padding-right: 3%
+}
+
+@media only screen and (min-width: 1450px) {
 	html {
-		font-size: 20px;
+		font-size: 18px;
 	}
 	button, #add-topic {
-		font-size: 20px;
+		font-size: 18px;
 	}
 	#add-topic {
-		margin: 2% 44%;
+		margin: 2% 20%;
 	}
 }
 
+.image {
+	margin:5px 2px 0px 2px;
+}
