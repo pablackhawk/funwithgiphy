@@ -17,6 +17,10 @@ button, #add-topic {
 
 }
 
+#topic-form {
+	float:right;
+}
+
 #add-topic {
 	margin:2% 53%;
 	
@@ -31,7 +35,8 @@ button, #add-topic {
 }
 
 #form {
-	padding-right: 3%
+	padding-right: 3%;
+	float:left;
 }
 
 @media only screen and (min-width: 1450px) {
@@ -48,4 +53,14 @@ button, #add-topic {
 
 .image {
 	margin:5px 2px 0px 2px;
+}
+
+@media only screen and(max-width: 480px) {
+	#topic-form {
+		float:right;
+	}
+
+	#gif-storage {
+		float: left;
+	}
 }

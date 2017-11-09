@@ -5,7 +5,7 @@ $(document).ready(function() {
 				  "Anaheim Ducks", "Hockey", "Critical Role", "Laura Bailey", "A-10 Warthog"];	
 
 	function displayTopics() {
-		$("#gifStorage").empty();
+		$("#gif-storage").empty();
 		var images = $(this).attr("data-name");
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         images + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -37,20 +37,20 @@ $(document).ready(function() {
 	        	gifDiv.append(p);
 	        	gifDiv.append(gifImage);
 
-	        	$("#gifStorage").append(gifDiv); //places gifs on the page
+	        	$("#gif-storage").append(gifDiv); //places gifs on the page
 
 	        }
         });
 	}
 	//creates buttons
 	function renderButtons() {
-		$("#buttonStorage").empty();
+		$("#button-storage").empty();
 		for (var i =0; i<topics.length; i++) {
 			var a = $("<button>");
 			a.addClass("topic");
 			a.attr("data-name", topics[i]);
 			a.text(topics[i]);
-			$("#buttonStorage").append(a);
+			$("#button-storage").append(a);
 		}
 	}
 	//handles adding topic
