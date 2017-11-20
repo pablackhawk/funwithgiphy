@@ -15,11 +15,7 @@ $(document).ready(function () {
       var results = response.data
       if (results == '') {
         alert('There are no gifs for that topic')
-<<<<<<< HEAD
       }      
-=======
-      }
->>>>>>> b6639063206a6ec704ce844207b81fdc555d8c60
       for (var i = 0; i < results.length; i++) {
         var gifDiv = $("<div class ='gif'>")
         var thisRating = results[i].rating
