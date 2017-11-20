@@ -1,7 +1,5 @@
 $(document).ready(function () {
-  var topics = ['Aircraft', 'Cars', 'F-14 Tomcat', 'Dungeons & Dragons',
-				  'Star Wars', 'Disney', 'Video Games', 'Star Trek',
-				  'Anaheim Ducks', 'Hockey', 'Critical Role', 'Laura Bailey', 'A-10 Warthog']
+  var topics = ['Aircraft', 'Cars', 'F-14 Tomcat', 'Dungeons & Dragons', 'Star Wars', 'Disney', 'Video Games', 'Star Trek', 'Anaheim Ducks', 'Hockey', 'Critical Role', 'Laura Bailey', 'A-10 Warthog']
 
   function displayTopics () {
     $('#gif-storage').empty()
@@ -10,37 +8,36 @@ $(document).ready(function () {
         images + '&api_key=dc6zaTOxFJmzC&limit=10'
 
     $.ajax({
-        	url: queryURL,
-        	method: 'GET'
+      url: queryURL,
+      method: 'GET'
     }).done(function (response) {
-        	console.log(response)
-        	var results = response.data
-        	if (results == '') {
-        		alert('There are no gifs for that topic')
-        	}
+      console.log(response)
+      var results = response.data
+      if (results == '') {
+        alert('There are no gifs for that topic')
+      }
+      for (var i = 0; i < results.length; i++) {
+        var gifDiv = $("<div class ='gif'>")
+        var thisRating = results[i].rating
+        var p = $('<p>').text('Rating: ' + thisRating)
+        if (thisRating === '') {
+          thisRating = 'Unrated'
+        }
 
-        	for (var i = 0; i < results.length; i++) {
-	        	var gifDiv = $("<div class ='gif'>")
-	        	var thisRating = results[i].rating
-	        	var p = $('<p>').text('Rating: ' + thisRating)
-	        	if (thisRating === '') {
-	        		thisRating = 'Unrated'
-	        	}
+        var gifImage = $('<img>')
+        gifImage.attr('src', results[i].images.fixed_height_still.url) // still gif
+        gifImage.attr('data-still', results[i].images.fixed_height_still.url) // still gif
+        gifImage.attr('data-animate', results[i].images.fixed_height.url) // animated gif
+        gifImage.attr('data-state', 'still') // supposed to imput check for moving or still
+        gifImage.attr('class', 'image') // selector for the gif
+        gifDiv.append(p)
+        gifDiv.append(gifImage)
 
-	        	var gifImage = $('<img>')
-	        	gifImage.attr('src', results[i].images.fixed_height_still.url) // still gif
-	        	gifImage.attr('data-still', results[i].images.fixed_height_still.url) // still gif
-	        	gifImage.attr('data-animate', results[i].images.fixed_height.url) // animated gif, supposedly
-	        	gifImage.attr('data-state', 'still') // supposed to imput check for moving or still
-	        	gifImage.attr('class', 'image') // selector for the gif
-	        	gifDiv.append(p)
-	        	gifDiv.append(gifImage)
-
-	        	$('#gif-storage').append(gifDiv) // places gifs on the page
-	        }
+        $('#gif-storage').append(gifDiv) // places gifs on the page
+      }
     })
   }
-	// creates buttons
+  // creates buttons
   function renderButtons () {
     $('#button-storage').empty()
     for (var i = 0; i < topics.length; i++) {
@@ -67,14 +64,14 @@ $(document).ready(function () {
   $(document).on('click', '.topic', displayTopics)
 
   $('body').on('click', '.image', function () {
-        		var state = $(this).attr('data-state')
-        		console.log(this)
-	        		if (state === 'still') {
-			          $(this).attr('src', $(this).data('animate'))
-			          $(this).attr('data-state', 'animate')
-			        }			        else {
-			          $(this).attr('src', $(this).data('still'))
-			          $(this).attr('data-state', 'still')
-	        		}
-	        	})
+    var state = $(this).attr('data-state')
+    console.log(this)
+    if (state === 'still') {
+      $(this).attr('src', $(this).data('animate'))
+      $(this).attr('data-state', 'animate')
+    } else {
+      $(this).attr('src', $(this).data('still'))
+      $(this).attr('data-state', 'still')
+    }
+  })
 })
